@@ -10,11 +10,13 @@ int main()
 {
 	NFA a = build_nfa_basic('a');
 	NFA b = build_nfa_basic('b');
-	NFA alt = build_nfa_alter(a, b);
-	//NFA str = build_nfa_star(alt);
-	NFA sa = build_nfa_concat(alt, b);
+	NFA alt = build_nfa_alter(&a, &b);
+	NFA str = build_nfa_star(&alt);
+	NFA sa = build_nfa_concat(&str, &b);
+	NFA sab = build_nfa_concat(&sa, &b);
+	NFA sabb = build_nfa_concat(&sab, &b);
 
-	NFA fin = sa;
+	NFA fin = sabb;
 	std::cout << "   ";
 	for (int x = 0; x < fin.state_count; ++x) {
 		std::cout << x << " ";

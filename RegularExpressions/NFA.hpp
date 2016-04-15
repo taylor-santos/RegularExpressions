@@ -13,14 +13,14 @@ class NFA {
 		void shift(int count);
 		void fill(NFA* other);
 		void set_char(int from, int to, char c);
-		char get_char(int from, int to);
+		const char get_char(int from, int to);
 		NFA(int states);
 		~NFA();
 };
 
 NFA build_nfa_basic(char c);
-NFA build_nfa_alter(NFA nfa1, NFA nfa2);
-NFA build_nfa_star(NFA nfa);
-NFA build_nfa_concat(NFA nfa1, NFA nfa2);
+NFA build_nfa_alter(NFA* nfa1, NFA* nfa2);
+NFA build_nfa_star(NFA* nfa);
+NFA build_nfa_concat(NFA* nfa1, NFA* nfa2);
 
 #endif
