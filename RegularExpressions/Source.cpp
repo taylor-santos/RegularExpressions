@@ -1,32 +1,34 @@
 #include <iostream>
+#include <vector>
 #include <string>
 #include "FSM.hpp"
+#include "NFA.hpp"
 #include "State.hpp"
 #include "Transition.hpp"
 
 int main()
 {
-	FSM* Regex = new FSM();
-	State* state_0 = new State(0);
-	State* state_1 = new State(1);
-	State* state_2 = new State(2);
-	State* state_3 = new State(3);
-	state_0->add_transition(new Transition(new char('b'), state_0));
-	state_0->add_transition(new Transition(new char('a'), state_1));
-	state_1->add_transition(new Transition(new char('a'), state_1));
-	state_1->add_transition(new Transition(new char('b'), state_2));
-	state_2->add_transition(new Transition(new char('a'), state_1));
-	state_2->add_transition(new Transition(new char('b'), state_3));
-	state_3->add_transition(new Transition(new char('b'), state_0));
-	state_3->add_transition(new Transition(new char('a'), state_1));
-	Regex->set_start(state_0);
-	Regex->set_final(state_3);
-	if (Regex->recognize("ababababababbbababbababbabaabb"))
+	NFA a = build_nfa_basic('a');
+	NFA b = build_nfa_basic('b');
+	NFA alt = build_nfa_alter(a, b);
+	//NFA str = build_nfa_star(alt);
+	NFA sa = build_nfa_concat(alt, b);
+
+	NFA fin = sa;
+	std::cout << "   ";
+	for (int x = 0; x < fin.state_count; ++x) {
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+	for (int y = 0; y < fin.state_count; ++y)
 	{
-		std::cout << "Yes.\n";
+		std::cout << y << "  ";
+		for (int x = 0; x < fin.state_count; ++x)
+		{
+			std::cout << fin.get_char(x, y) << " ";
+		}
+		std::cout << std::endl;
 	}
-	else {
-		std::cout << "No.\n";
-	}
+	std::cout << "Start: " << fin.start << std::endl << "End: " << fin.end << std::endl;
 	while (1);
 }

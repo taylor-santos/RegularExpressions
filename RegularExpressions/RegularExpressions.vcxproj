@@ -119,12 +119,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FSM.cpp" />
+    <ClCompile Include="NFA.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Transition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FSM.hpp" />
+    <ClInclude Include="NFA.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="Transition.hpp" />
   </ItemGroup>
