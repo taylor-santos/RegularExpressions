@@ -132,7 +132,7 @@
     <ClInclude Include="Node.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="Transition.hpp" />
-    <ClInclude Include="Tree.h" />
+    <ClInclude Include="Tree.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

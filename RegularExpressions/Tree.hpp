@@ -10,6 +10,6 @@ class Tree {
 		Tree(class Node* root_in) : root(root_in) {}
 };
 
-Tree build_tree_from_expression(std::string str);
+Tree* build_tree_from_expression(std::string str);
 
 #endif

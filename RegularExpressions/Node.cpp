@@ -29,6 +29,19 @@ NFA* Node::tree_to_nfa()
 				return &build_nfa_star(&nfa);
 			}
 		}
+		case PLUS:
+		{
+			assert((left == NULL) ^ (right == NULL));
+			if (left != NULL)
+			{
+				NFA nfa = *left->tree_to_nfa();
+				return &build_nfa_plus(&nfa);
+			}
+			else {
+				NFA nfa = *right->tree_to_nfa();
+				return &build_nfa_plus(&nfa);
+			}
+		}
 		case CONCAT:
 		{
 			assert(left != NULL && right != NULL);

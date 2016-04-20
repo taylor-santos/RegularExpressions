@@ -109,7 +109,7 @@ NFA build_nfa_alter(NFA* nfa1, NFA* nfa2)
 	new_nfa->set_char(one->end, new_nfa->end, eps);
 	new_nfa->set_char(two->end, new_nfa->end, eps);
 
-	new_nfa->regex = new std::string((*one->regex + "|" + *two->regex));
+	new_nfa->regex = new std::string(("(" + *one->regex + ")|(" + *two->regex + ")"));
 
 	return (*new_nfa);
 }
@@ -130,6 +130,25 @@ NFA build_nfa_star(NFA* nfa)
 	new_nfa->start = 0;
 	new_nfa->end = new_nfa->state_count - 1;
 	new_nfa->regex = new std::string("(" + *nfa->regex + ")*");
+	return *new_nfa;
+}
+
+NFA build_nfa_plus(NFA* nfa)
+{
+	NFA* new_nfa = new NFA(nfa->state_count);
+	new_nfa->fill(nfa);
+	new_nfa->start = nfa->start;
+	new_nfa->end = nfa->end;
+
+	new_nfa->shift(1);
+	new_nfa->append();
+	new_nfa->set_char(new_nfa->end, new_nfa->start, eps);
+	new_nfa->set_char(0, new_nfa->start, eps);
+	new_nfa->set_char(new_nfa->end, new_nfa->state_count - 1, eps);
+	//new_nfa->set_char(0, new_nfa->state_count - 1, eps);
+	new_nfa->start = 0;
+	new_nfa->end = new_nfa->state_count - 1;
+	new_nfa->regex = new std::string("(" + *nfa->regex + ")+");
 	return *new_nfa;
 }
 
