@@ -72,4 +72,18 @@ NFA* Node::tree_to_nfa()
 	}
 }
 
+Node* Node::copy()
+{
+	Node* newNode = new Node(type, data);
+	if (left != NULL)
+	{
+		newNode->left = left->copy();
+	}
+	if (right != NULL)
+	{
+		newNode->right = right->copy();
+	}
+	return newNode;
+}
+
 Node::~Node() {}

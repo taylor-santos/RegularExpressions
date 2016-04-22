@@ -18,7 +18,7 @@ int main()
 	int whiteColor = 15;
 	int greyColor = 8;
 	SetConsoleTextAttribute(hConsole, whiteColor);
-	Tree* newTree = build_tree_from_expression("(ABC|DEF|G*)+ABB");
+	Tree* newTree = build_tree_from_expression("[a-zA-Z]{3}e[a-zA-Z]{2}e");
 	/*
 	Node* star1 = new Node(PLUS);
 	Node* a1 = new Node(CHR, 'a');
@@ -37,13 +37,20 @@ int main()
 	*/
 	NFA fin = *newTree->root->tree_to_nfa();
 
+	SetConsoleTextAttribute(hConsole, 15);
+	std::cout << "Start: " << fin.start << std::endl << "End: " << fin.end << std::endl << *fin.regex << std::endl;
+
 	SetConsoleTextAttribute(hConsole, whiteColor);
 	std::cout << " ";
 	if (fin.state_count >= 10)
 		std::cout << " ";
+	if (fin.state_count >= 100)
+		std::cout << " ";
 	for (int x = 0; x < fin.state_count; ++x) {
 		std::cout << x << " ";
 		if (x < 10 && fin.state_count >= 10)
+			std::cout << " ";
+		if (x < 100 && fin.state_count >= 100)
 			std::cout << " ";
 	}
 	SetConsoleTextAttribute(hConsole, greyColor);
@@ -54,6 +61,8 @@ int main()
 		std::cout << y;
 		SetConsoleTextAttribute(hConsole, greyColor);
 		if (fin.state_count >= 10 && y < 10)
+			std::cout << " ";
+		if (fin.state_count >= 100 && y < 100)
 			std::cout << " ";
 		for (int x = 0; x < fin.state_count; ++x)
 		{
@@ -69,21 +78,26 @@ int main()
 				
 			if (fin.state_count >= 10 && x < fin.state_count-1)
 				std::cout << (char)196;
+			if (fin.state_count >= 100 && x < fin.state_count - 1)
+				std::cout << (char)196;
 		}
 		std::cout << std::endl;
-		if (y < fin.state_count - 1)
+		if (fin.state_count >= 10)
 		{
-			for (int x = 0; x < fin.state_count; ++x)
+			if (y < fin.state_count - 1)
 			{
-				if (fin.state_count >= 10)
-					std::cout << " ";
-				std::cout << " " << (char)179;
+				for (int x = 0; x < fin.state_count; ++x)
+				{
+					if (fin.state_count >= 10)
+						std::cout << " ";
+					if (fin.state_count >= 100)
+						std::cout << " ";
+					std::cout << " " << (char)179;
 
+				}
 			}
+			std::cout << std::endl;
 		}
-		std::cout << std::endl;
 	}
-	SetConsoleTextAttribute(hConsole, 15);
-	std::cout << "Start: " << fin.start << std::endl << "End: " << fin.end << std::endl << *fin.regex << std::endl;
 	while (1);
 }
