@@ -63,10 +63,6 @@ NFA* Node::tree_to_nfa()
 				return &build_nfa_question(&nfa);
 			}
 		}
-		case DOT:
-		{
-
-		}
 		default:
 			assert(0);
 	}

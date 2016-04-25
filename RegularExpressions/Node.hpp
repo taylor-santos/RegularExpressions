@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-typedef enum {CHR, STAR, PLUS, DOT, QUESTION, ALTER, CONCAT} node_type;
+typedef enum {CHR, STAR, PLUS, QUESTION, ALTER, CONCAT} node_type;
 
 class Node {
 	public:

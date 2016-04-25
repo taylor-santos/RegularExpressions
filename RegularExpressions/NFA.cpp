@@ -109,7 +109,7 @@ NFA build_nfa_alter(NFA* nfa1, NFA* nfa2)
 	new_nfa->set_char(one->end, new_nfa->end, eps);
 	new_nfa->set_char(two->end, new_nfa->end, eps);
 
-	new_nfa->regex = new std::string("(" + *one->regex + ")|(" + *two->regex + ")");
+	new_nfa->regex = new std::string(*one->regex + "|" + *two->regex);
 
 	return (*new_nfa);
 }

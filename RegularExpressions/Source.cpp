@@ -8,6 +8,7 @@
 #include "Transition.hpp"
 #include "Node.hpp"
 #include "Tree.hpp"
+#include "ExpressionTree.hpp"
 
 HANDLE hConsole;
 
@@ -18,7 +19,9 @@ int main()
 	int whiteColor = 15;
 	int greyColor = 8;
 	SetConsoleTextAttribute(hConsole, whiteColor);
-	Tree* newTree = build_tree_from_expression("[a-zA-Z]{3}e[a-zA-Z]{2}e");
+	//Tree* newTree = build_tree_from_expression("[a-zA-Z]{3}e[a-zA-Z]{2}e");
+	//Expression_Tree* newTree = new Expression_Tree("(A|B|C)*\\?D{3,15}[1-4]");
+	Expression_Tree* newTree = new Expression_Tree("[a-z]{3}e[a-z]{2}e");
 	/*
 	Node* star1 = new Node(PLUS);
 	Node* a1 = new Node(CHR, 'a');
