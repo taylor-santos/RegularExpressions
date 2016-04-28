@@ -7,8 +7,9 @@
 #define eps 228
 
 class NFA {
-		std::vector<std::vector<char>*>* transition_table;
+		
 	public:
+		std::vector<std::vector<char>*>* transition_table;
 		int state_count;
 		int start;
 		int end;

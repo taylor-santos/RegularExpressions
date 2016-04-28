@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DFA.cpp" />
     <ClCompile Include="ExpressionTree.cpp" />
     <ClCompile Include="FSM.cpp" />
     <ClCompile Include="NFA.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DFA.hpp" />
     <ClInclude Include="ExpressionTree.hpp" />
     <ClInclude Include="FSM.hpp" />
     <ClInclude Include="NFA.hpp" />
